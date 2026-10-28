@@ -2,11 +2,11 @@
 
 **AnalystLab Africa | Data Analytics Internship | Week 2: Business Analytics Case Study**
 
-An interactive Power BI dashboard that shows management where Global Superstore makes money, where it loses money, and what to change.
+An interactive Power BI dashboard that shows management where Global Superstore makes money, where it loses money and what to change.
 
 ## Business problem
 
-Global Superstore has years of order data but no single view of how the business is performing. Management wants to monitor sales, profitability, customer behaviour and regional performance in one place. Sales and profit are not the same thing: the company recorded $12.64M in sales but only $1.47M in profit (an 11.61% margin), and about a quarter of order lines lose money.
+Global Superstore has years of order data but no single view of how the business is performing. Management wants to monitor sales, profitability, customer behaviour and regional performance in one place. Sales and profit are not the same thing: the company recorded $12.64M in sales but only $1.47M in profit (an 11.61% margin) and about a quarter of order lines lose money.
 
 ## Dataset
 
@@ -63,7 +63,14 @@ Profit Margin = DIVIDE([Total Profit], [Total Sales])
 | Executive Dashboard | 5 KPI cards, sales and profit by month, sales by segment, sales and profit by year, profit by market, year / market / segment slicers |
 | Regional Performance | Sales by country map, profit by region, market and region matrix with margin highlighting |
 | Product Performance | Sales and profit by category, profit by sub-category, top 10 products by profit |
-| Insights | Profit by discount band, bottom 10 countries by profit, key insights, risks, opportunities and recommendations |
+| Insights| Profit by discount band, bottom 10 countries by profit, key insights, risks, opportunities and recommendations |
+
+## Dashboard preview
+
+![Executive Dashboard](screenshots/1_executive_dashboard.png)
+![Regional Performance](screenshots/2_regional_performance.png)
+![Product Performance](screenshots/3_product_performance.png)
+![Insights](screenshots/4_insights.png)
 
 ## Key findings
 
@@ -90,17 +97,19 @@ Profit Margin = DIVIDE([Total Profit], [Total Sales])
 - The data covers 2011 to 2014 only.
 - The map visual needs Map and Filled Map visuals enabled in Power BI Desktop (File > Options > Security).
 
-## Repository contents
+## Folder contents
 
 ```
-.
-├── Global_Superstore_Analysis.pbix      Power BI project file
-├── Global_Superstore_Dashboard.pdf                 Dashboard export (all filters cleared)
-├── Business_Intelligence_Overview_Report.docx              Part 1: Business Intelligence overview
-├── Executive_Summary.docx        Insights, risks, opportunities, recommendations
-├── screenshots/                         Dashboard page images
-└── README.md
+Week2_Godfrey_Miracle/
+├── README.md                                   This file
+├── Global_Superstore_Analysis.pbix             Power BI project file
+├── Global_Superstore_Dashboard.pdf             Dashboard export (all filters cleared)
+├── Business_Intelligence_Overview_Report.docx  Part 1: Business Intelligence overview
+├── Executive_Summary.docx                      Insights, risks, opportunities, recommendations
+└── screenshots/                                Dashboard page images
 ```
+
+Back to the [main projects page](../README.md).
 
 ## Author
 
