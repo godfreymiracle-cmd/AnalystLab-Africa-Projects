@@ -10,7 +10,7 @@ Each week's work sits in its own folder with its own README that explains the pr
 |---|---|---|---|
 | 1 | **ShopSmart Retail Sales Analysis**: cleaned nine retail tables, analysed 50,000 orders (₦7.58B revenue) and built an interactive executive dashboard | Microsoft Excel (Excel Tables, XLOOKUP, pivot tables, pivot charts, slicers) | [Week1_Godfrey_Miracle](Week1_Godfrey_Miracle/) |
 | 2 | **Global Superstore Sales & Profitability Dashboard**: cleaned 51,290 order lines and built a four-page Power BI dashboard with insights and recommendations | Microsoft Power BI (Power Query, DAX, slicers, page navigation) | [Week2_Godfrey_Miracle](Week2_Godfrey_Miracle/) |
-
+| 3 | **Hospital Operations & Financial Intelligence Dashboard**: profiled five hospital tables, analysed 27,891 encounters and built a four-page Power BI dashboard with validated KPIs and recommendations | Microsoft Power BI (Power Query, DAX, slicers, page navigation), Microsoft Excel (validation checks) | [Week3_Godfrey_Miracle](Week3_Godfrey_Miracle) |
 More weeks will be added as the internship continues.
 
 ## Skills shown
