@@ -43,11 +43,11 @@ Screenshots are in the `Screenshots` folder.
 
 ## Data quality
 
-Questionable records were kept and flagged instead of deleted: 89 encounters with a zero claim cost, 75 very long stays, and 2022 being a partial year (220 encounters, 1 January to 5 February). Full details are in `data_quality_assessment.pdf`.
+Questionable records were kept and flagged instead of deleted: 89 encounters with a zero claim cost, 75 very long stays, and 2022 being a partial year (220 encounters, 1 January to 5 February). Full details are in `Data_Quality_Assessment.pdf`.
 
 ## Validation
 
-Five headline figures were recalculated from the raw CSV files in Excel and matched the Power BI values exactly, and seven slicer tests passed. See `Validation`.
+Five headline figures were recalculated from the raw CSV files in Excel and matched the Power BI values exactly, and seven slicer tests passed. See `Validation_Evidence.pdf`.
 
 ## Tools
 
@@ -57,17 +57,17 @@ Power BI, DAX, Power Query, Excel.
 
 ```
 README.md
-HealthCare_Analysis.pbix              dashboard.pdf (4 pages)
-project_brief.pdf                     Business problem, success criteria, question analysis
-data_quality_assessment.pdf           Data quality findings and decisions
-kpi_definition_sheet.pdf              KPI definitions and DAX measures
-executive_summary.pdf                 Key findings and recommendations
-validation                            Independent checks and filter tests
-Screenshots/                          Dashboard pages and validation screenshots
+Hospital_Operations_Analysis.pbix     Power BI dashboard (4 pages)
+Project_Brief.pdf                     Business problem, success criteria, question analysis
+Data_Quality_Assessment.pdf           Data quality findings and decisions
+KPI_Definition_Sheet.pdf              KPI definitions and DAX measures
+Executive_Summary.pdf                 Key findings and recommendations
+Validation_Evidence.pdf               Independent checks and filter tests
+screenshots/                          Dashboard pages and validation screenshots
 ```
 
 ## How to open
 
-Download `HealthCare_Analysis.pbix` from this folder and open it in Power BI Desktop.
+Download `Hospital_Operations_Analysis.pbix` from this folder and open it in Power BI Desktop.
 
 Built as part of the AnalystLab Africa internship.
