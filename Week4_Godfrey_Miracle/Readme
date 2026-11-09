@@ -1,0 +1,164 @@
+# Consumer Complaint Trends and Response Intelligence Platform
+
+**AnalystLab Africa | Data Analytics Internship | Week 4: Consumer Complaint Trends and Response Intelligence Platform**
+
+A four-page Power BI dashboard that monitors 62,516 consumer complaints about Bank of America (1 May 2017 to 28 August 2023): volumes and trends, products and issues, recorded company responses, and the CFPB forwarding interval. Every KPI was rebuilt and validated in MySQL.
+
+---
+
+## Business problem
+
+Stakeholders need a reliable way to monitor consumer complaints and understand how they change over time. The project answers:
+
+- How have complaint volumes changed between 2017 and 2023?
+- Which financial products and issues are reported most often, and how do issues differ by product?
+- How long does it take the CFPB to forward a complaint to the company?
+- Which company response categories are recorded most often, and what share have a recorded timely response?
+- Have patterns and response categories changed over time?
+
+A complaint is an issue reported by a consumer. It does not establish misconduct or prove that a company broke any rule, and a recorded company response is not proof that a complaint was resolved. All findings in this project describe what the records show.
+
+## Dataset
+
+| Item | Detail |
+|---|---|
+| Source | Consumer Financial Protection Bureau (CFPB) complaint data on Bank of America, supplied by AnalystLab Africa |
+| Records | 62,516 complaints, 12 columns |
+| Period | 1 May 2017 to 28 August 2023 |
+| Key fields | Complaint ID, Date submitted, Date received, Product, Sub-product, Issue, Sub-issue, Company public response, Company response to consumer, Timely response? |
+
+**Reading the two dates correctly:** *Date submitted* is when the CFPB received the complaint. *Date received* is when the CFPB sent it to the company. The difference is the **CFPB forwarding interval**, not the company's response or resolution time.
+
+The raw dataset is not redistributed in this repository.
+
+## Tools
+
+- **Power Query** for cleaning and preparation
+- **Power BI (DAX)** for the data model, measures and dashboard
+- **MySQL 8.0** for the cleaned view and the validation queries
+
+## Data preparation
+
+The original data was preserved (`Complaints_Raw` is kept unedited and not loaded to the report), and all cleaning was done in a separate query, `Complaints_Clean`. The same steps are repeated in SQL.
+
+- Set data types; Complaint ID stored as text (unique key: 62,516 distinct values, no duplicates).
+- Trimmed text and checked every date (all valid, no negative forwarding intervals).
+- **Blank Timely response? (1,494)** are all *In progress*. They were labelled *In progress*, **not** treated as No, and excluded from the timely-response denominator.
+- **Blank Company public response (2,175)** was split into *Pending (In progress)* (1,494) and *Not recorded (closed)* (681).
+- Blank Sub-product (7) and Sub-issue (10,858) were labelled *Not specified*.
+- *Web Referral* (90) was merged into *Referral*. This is a judgement call because the dataset does not define it.
+- Added Year, Month, Quarter, Year-Month, Forwarding Interval (Days), Interval Band, Product Short and Public Response Short.
+
+Every issue and decision is logged in [`Week4_KPI_Definitions_and_Data_Quality.docx`](Week4_KPI_Definitions_and_Data_Quality.docx).
+
+## Data model and calculations
+
+A flat table (`Complaints_Clean`) plus a `Calendar` table, related on **Date submitted** (one-to-many, single direction).
+
+| Measure | Definition |
+|---|---|
+| Total Complaints | Count of complaint records |
+| Share of Complaints % | Product complaints divided by the selected complaints (ALLSELECTED) |
+| Timely Responses (Yes) / Untimely Responses (No) | Records marked Yes / No |
+| Valid Timely Records | Yes + No only |
+| Timely Response Rate | Yes ÷ (Yes + No); In progress is excluded and shown separately |
+| In Progress Complaints | Complaints with company response *In progress* |
+| Avg / Median Forwarding Interval | Mean / median days from CFPB receipt to forwarding |
+| Complaints Over 30 Days | Forwarding interval above 30 days |
+| Prior Year Complaints, YoY Change % | Same period one year earlier, and the percentage change |
+
+Full definitions and verified values are in the KPI document linked above.
+
+## Dashboard pages
+
+| Page | Content |
+|---|---|
+| **1. Overview** | Total complaints, timely response rate, average forwarding interval, complaints in progress, monthly trend, complaints by product |
+| **2. Product and Issue** | Complaints by product, top 10 sub-products, most frequent issues (with sub-issue drill-down), product-versus-issue matrix |
+| **3. Company Response** | Timely, untimely and in-progress counts, response categories, timely vs untimely, public response categories |
+| **4. Timeline** | Average and median forwarding interval, complaints over 30 days, monthly and annual trends, interval distribution, interval by product, longest intervals |
+
+Year and Product slicers apply across all pages.
+
+## Dashboard preview
+
+**Page 1: Overview**
+![Overview](Screenshots/01_overview.png)
+
+**Page 2: Product and Issue**
+![Product and Issue](Screenshots/02_product_issue.png)
+
+**Page 3: Company Response**
+![Company Response](Screenshots/03_company_response.png)
+
+**Page 4: Timeline**
+![Timeline](Screenshots/04_timeline.png)
+
+A PDF export of all four pages is in [`Week4_Dashboard.pdf`](Week4_Dashboard.pdf).
+
+## Key findings
+
+1. **Concentration:** Checking / savings (24,814) and Credit / prepaid card (16,197) account for **65.6%** of complaints.
+2. **One dominant issue:** *Managing an account* is 15,109 complaints (**24.17%**), all under Checking / savings.
+3. **Growth:** full-year complaints rose **64.5%** from 2018 (7,872) to 2022 (12,953). Compared like-for-like (1 January to 28 August), 2023 is **+11.3%** on 2022.
+4. **Timeliness indicator:** among records with a Yes or No value, **96.06%** are marked timely (58,619 of 61,022). The untimely share rose from under 1% (2017 to 2020) to **10.98% in 2021**, then 4.38% (2022) and 6.84% (2023).
+5. **Fast forwarding:** the median forwarding interval is **0 days**, 79.4% are forwarded the same day, and only **435 (0.70%)** exceed 30 days.
+6. **July 2023 peak:** 1,749 complaints, the highest month and 1.54 times the trailing 12-month average. 49.3% of them were marked *In progress* in the dataset.
+7. **Uneven data completeness:** sub-issue is blank for 96.4% of Mortgage and 100% of Money transfer complaints.
+
+Full evidence, with cautions on how to read each finding, is in [`Week4_Insights_and_Recommendations.docx`](Week4_Insights_and_Recommendations.docx).
+
+## Recommendations
+
+1. **Add a monthly volume alert** (above 1.25 times the trailing 12-month average); it would have flagged 8 of the 64 eligible months, with July 2023 the highest.
+2. **Focus root-cause review** on the largest drivers: Managing an account and the top credit card issues, using narratives and internal data this dataset lacks.
+3. **Confirm and monitor the rise in recorded untimely responses** since 2021 with the data owner before drawing conclusions.
+4. **Close data gaps and define ambiguous values** (blank sub-issues, the *Closed* category, *Web Referral*, blank public responses).
+5. **Report trends like-for-like** and label partial years.
+
+## Validation
+
+The cleaning and every KPI were rebuilt in MySQL and compared with the dashboard. [`Week4_Validation.sql`](Week4_Validation.sql) ends with 25 automatic checks, whose expected values were calculated separately from the SQL queries and typed in. **All 25 returned PASS.** Section 6 of the script reproduces the figures behind the main findings.
+
+![SQL validation](Screenshots/05_sql_validation_pass.png)
+
+## Assumptions and limitations
+
+- The data has no complaint narratives, so no sentiment or cause analysis is possible.
+- The forwarding interval is the CFPB's, not the company's response time.
+- Timely response and response categories are recorded indicators, not proof of resolution.
+- 2017 (from 1 May) and 2023 (to 28 August) are partial years, so their year-over-year changes are not like-for-like.
+- The causes of the July 2023 peak and the 2021 rise in untimely responses cannot be determined from this dataset.
+- Complaints marked *In progress* reflect their status when the data was extracted and may have changed.
+- The dataset covers one company and has no customer or account counts, so product counts are not rates.
+- *Web Referral* merged into *Referral* and the *Not specified* labels are documented judgement calls that do not change any KPI total.
+
+## Folder contents
+
+```
+Week4_Godfrey_Miracle/
+├── README.md
+├── Week4_Consumer_Complaints.pbix
+├── Week4_Dashboard.pdf
+├── Week4_Validation.sql
+├── Week4_KPI_Definitions_and_Data_Quality.pdf
+├── Week4_Insights_and_Recommendations.pdf
+└── Screenshots/
+    ├── 01_overview.png
+    ├── 02_product_issue.png
+    ├── 03_company_response.png
+    ├── 04_timeline.png
+    └── 05_sql_validation_pass.png
+```
+
+[← Back to all projects](../README.md)
+
+---
+
+## Author
+
+**Godfrey Miracle**
+Data Analytics | AnalystLab Africa Experience Lab Internship Programme
+[LinkedIn](https://www.linkedin.com/in/miracle-godfrey-815b60225/) | [GitHub](https://github.com/godfreymiracle-cmd)
+
+#AnalystLabAfrica
