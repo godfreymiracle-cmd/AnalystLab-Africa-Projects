@@ -49,7 +49,7 @@ The original data was preserved (`Complaints_Raw` is kept unedited and not loade
 - *Web Referral* (90) was merged into *Referral*. This is a judgement call because the dataset does not define it.
 - Added Year, Month, Quarter, Year-Month, Forwarding Interval (Days), Interval Band, Product Short and Public Response Short.
 
-Every issue and decision is logged in [`Week4_KPI_Definitions_and_Data_Quality.docx`](Week4_KPI_Definitions_and_Data_Quality.docx).
+Every issue and decision is logged in [`Week4_KPI_Definitions_and_Data_Quality.pdf`](Week4_KPI_Definitions_and_Data_Quality.pdf).
 
 ## Data model and calculations
 
