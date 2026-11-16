@@ -13,6 +13,7 @@ Each week's work sits in its own folder with its own README that explains the pr
 | 3 | **Hospital Operations & Financial Intelligence Dashboard**: profiled five hospital tables, analysed 27,891 encounters and built a four-page Power BI dashboard with validated KPIs and recommendations | Microsoft Power BI (Power Query, DAX, slicers, page navigation), Microsoft Excel (validation checks) | [Week3_Godfrey_Miracle](Week3_Godfrey_Miracle) |
 | 4 | **Consumer Complaint Trends & Response Intelligence Dashboard**: cleaned and validated 62,516 Bank of America complaint records (2017 to 2023) and built a four-page Power BI dashboard with validated KPIs, insights and recommendations | Microsoft Power BI (Power Query, DAX, slicers, page navigation), MySQL (validation checks) | [Week4_Godfrey_Miracle](Week4_Godfrey_Miracle) |
 | 5 | **Morocco Electricity Consumption Analysis**: cleaned and explored 52,416 ten-minute electricity readings from three zones (2017), analysed patterns by hour, day and month, tested the links with temperature, humidity and wind speed, and delivered charts, insights and recommendations | Python (Pandas, NumPy), Jupyter Notebook, Matplotlib, Seaborn, Plotly | [Week5_Godfrey_Miracle](Week5_Godfrey_Miracle) |
+More weeks will be added as the internship continues
 
 ## Skills shown
 
@@ -23,6 +24,11 @@ Each week's work sits in its own folder with its own README that explains the pr
 - Power Query data preparation and DAX measures
 - Multi-page Power BI dashboards with navigation
 - Turning findings into business recommendations
+- Exploratory data analysis in Python with Pandas and NumPy
+- Analysing patterns by hour, day of week and month
+- Correlation analysis, read as association and not proof of cause
+- Data visualisation with Matplotlib, Seaborn and Plotly
+- Documenting a reproducible analysis in a Jupyter Notebook
 
 ## About
 
